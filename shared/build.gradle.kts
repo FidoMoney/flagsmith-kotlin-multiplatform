@@ -3,7 +3,11 @@ plugins {
     kotlin("native.cocoapods")
     kotlin("plugin.serialization")
     id("com.android.library")
+    id("maven-publish")
 }
+
+group = "com.flagsmith"
+version = "1.0"
 
 kotlin {
     android()
@@ -18,6 +22,7 @@ kotlin {
         ios.deploymentTarget = "12"
         framework {
             baseName = "Flagsmith"
+            isStatic = true
         }
     }
     
@@ -77,5 +82,17 @@ android {
     defaultConfig {
         minSdk = Versions.Android.minSdk
         targetSdk = Versions.Android.targetSdk
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.flagsmith"
+            artifactId = "flagsmith-kotlin-multiplatform"
+            version = "1.0.0"
+
+            from(components["kotlin"])
+        }
     }
 }
