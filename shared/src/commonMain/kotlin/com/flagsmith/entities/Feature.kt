@@ -7,9 +7,9 @@ import kotlinx.serialization.Serializable
 data class Feature(
     val id: Long,
     val name: String,
-    @SerialName("created_date") val createdDate: String,
-    val description: String,
-    @SerialName("initial_value") val initialValue: String,
-    @SerialName("default_enabled") val defaultEnabled: Boolean,
+    @SerialName("created_date") val createdDate: String? = null,
+    val description: String? = null,
+    @SerialName("initial_value") val initialValue: String? = null,
+    @SerialName("default_enabled") val defaultEnabled: Boolean? = null,
     val type: String,
 )

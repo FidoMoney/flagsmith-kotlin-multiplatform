@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.library").version("7.4.0-rc01").apply(false)
+    id("com.android.library").version(Versions.gradlePlugin).apply(false)
     kotlin("multiplatform").version(Versions.kotlin).apply(false)
     kotlin("plugin.serialization") version Versions.kotlin
 }

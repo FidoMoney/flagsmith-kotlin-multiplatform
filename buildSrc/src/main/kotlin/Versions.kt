@@ -3,6 +3,7 @@ object Versions {
     const val ktor = "2.1.3"
     const val serialization = "1.4.1"
     const val coroutines = "1.6.4"
+    const val gradlePlugin = "7.2.2"
 
     object Android {
         const val minSdk = 21

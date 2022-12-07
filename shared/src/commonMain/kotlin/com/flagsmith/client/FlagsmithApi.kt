@@ -35,7 +35,7 @@ internal class FlagsmithApiImpl(
     }
 
     override suspend fun setTrait(trait: Trait, identity: String): TraitWithIdentity {
-        return httpClient.post("/flags") {
+        return httpClient.post("/traits") {
             parameter("identifier", identity)
 
             setBody(

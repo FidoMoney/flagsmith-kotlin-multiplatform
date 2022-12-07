@@ -6,8 +6,11 @@ import com.flagsmith.entities.Trait
 import com.flagsmith.entities.TraitWithIdentity
 
 interface FlagsmithSDK {
+    suspend fun getFeatureFlags(): List<Flag>
     suspend fun getFeatureFlags(identity: String?): List<Flag>
+    suspend fun hasFeatureFlag(forFeatureId: String): Boolean
     suspend fun hasFeatureFlag(forFeatureId: String, identity: String?): Boolean
+    suspend fun getValueForFeature(searchFeatureId: String): Any?
     suspend fun getValueForFeature(searchFeatureId: String, identity: String?): Any?
     suspend fun getTrait(id: String, identity: String): Trait?
     suspend fun getTraits(identity: String): List<Trait>
