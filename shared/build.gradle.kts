@@ -1,3 +1,5 @@
+import java.lang.System.getenv
+
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
@@ -93,6 +95,14 @@ publishing {
             version = "1.0.0"
 
             from(components["kotlin"])
+        }
+    }
+
+    repositories {
+        maven {
+            name = "github"
+            url = uri("https://maven.pkg.github.com/${getenv("GITHUB_REPOSITORY")}")
+            credentials(PasswordCredentials::class)
         }
     }
 }
