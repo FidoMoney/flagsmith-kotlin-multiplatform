@@ -1,4 +1,6 @@
 object Versions {
+    const val lib = "1.0.1"
+
     const val kotlin = "1.7.21"
     const val ktor = "2.1.3"
     const val serialization = "1.4.1"

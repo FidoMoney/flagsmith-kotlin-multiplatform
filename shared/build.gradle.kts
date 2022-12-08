@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.flagsmith"
-version = "1.0"
+version = Versions.lib
 
 kotlin {
     android()
@@ -74,6 +74,10 @@ kotlin {
             iosSimulatorArm64Test.dependsOn(this)
         }
     }
+
+    android {
+        publishLibraryVariants("release", "debug")
+    }
 }
 
 android {
@@ -92,7 +96,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.flagsmith"
             artifactId = "flagsmith-kotlin-multiplatform"
-            version = "1.0.0"
+            version = Versions.lib
 
             from(components["kotlin"])
         }
