@@ -10,7 +10,11 @@ import io.ktor.client.plugins.logging.SIMPLE
 import io.ktor.client.request.headers
 import io.ktor.http.ContentType
 import io.ktor.http.URLProtocol
+import io.ktor.http.appendEncodedPathSegments
+import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
+import io.ktor.http.encodedPath
+import io.ktor.http.path
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
@@ -41,10 +45,11 @@ internal class HttpClientBuilder(
                 protocol = URLProtocol.HTTPS.takeIf {
                     isHttps
                 } ?: URLProtocol.HTTP
-                host = "$baseUrl/$apiPath/$apiVersion"
-
-                contentType(ContentType.Application.Json)
+                host = baseUrl
+                encodedPath = "/$apiPath/$apiVersion/"
             }
+
+            contentType(ContentType.Application.Json)
 
             headers {
                 append("X-Environment-Key", environmentKey)

@@ -24,18 +24,18 @@ internal class FlagsmithApiImpl(
 ) : FlagsmithApi {
 
     override suspend fun getIdentityFlagsAndTraits(identity: String): IdentityFlagsAndTraits {
-        return httpClient.get("/identities") {
+        return httpClient.get("identities") {
             parameter("identifier", identity)
         }.body()
     }
 
 
     override suspend fun getFlags(): List<Flag> {
-        return httpClient.get("/flags").body()
+        return httpClient.get("flags").body()
     }
 
     override suspend fun setTrait(trait: Trait, identity: String): TraitWithIdentity {
-        return httpClient.post("/traits") {
+        return httpClient.post("traits") {
             parameter("identifier", identity)
 
             setBody(
@@ -49,7 +49,7 @@ internal class FlagsmithApiImpl(
     }
 
     override suspend fun postAnalytics(eventMap: Map<String, Int?>) {
-        httpClient.post("/analytics/flags") {
+        httpClient.post("analytics/flags") {
             setBody(eventMap)
         }
     }
