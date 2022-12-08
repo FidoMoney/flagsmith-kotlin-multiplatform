@@ -48,7 +48,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-android:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-okhttp:${Versions.ktor}")
             }
         }
         val androidTest by getting

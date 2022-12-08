@@ -5,7 +5,7 @@ import com.flagsmith.entities.IdentityFlagsAndTraits
 import com.flagsmith.entities.Trait
 import com.flagsmith.entities.TraitWithIdentity
 
-interface FlagsmithSDK {
+internal interface FlagsmithSDK {
     suspend fun getFeatureFlags(): List<Flag>
     suspend fun getFeatureFlags(identity: String?): List<Flag>
     suspend fun hasFeatureFlag(forFeatureId: String): Boolean
