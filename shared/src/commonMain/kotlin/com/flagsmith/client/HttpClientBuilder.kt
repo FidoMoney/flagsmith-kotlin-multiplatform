@@ -37,12 +37,13 @@ internal class HttpClientBuilder(
         config.expectSuccess = true
 
         config.defaultRequest {
-            url {
-                protocol = URLProtocol.HTTPS.takeIf {
+            url(
+                scheme = (URLProtocol.HTTPS.takeIf {
                     isHttps
-                } ?: URLProtocol.HTTP
-                host = "$baseUrl/$apiPath/$apiVersion"
-            }
+                } ?: URLProtocol.HTTP).name,
+                host = baseUrl,
+                path = "/$apiPath/$apiVersion/"
+            )
 
             contentType(ContentType.Application.Json)
 

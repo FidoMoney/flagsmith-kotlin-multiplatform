@@ -116,3 +116,20 @@ publishing {
         }
     }
 }
+
+val iosTest: Task by tasks.creating {
+    val device = project.findProperty("iosDevice")?.toString() ?: "iPhone 8"
+    val testExecutable = kotlin.targets.getByName<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>("iosSimulatorArm64").binaries.getTest("DEBUG")
+    dependsOn(testExecutable.linkTaskName)
+    group = JavaBasePlugin.VERIFICATION_GROUP
+    description = "Runs tests for target 'ios' on an iOS simulator"
+
+    doLast {
+        exec {
+            println(testExecutable.outputFile.absolutePath)
+            commandLine( "xcrun", "simctl", "spawn", "--standalone", device, testExecutable.outputFile.absolutePath)
+        }
+    }
+}
+
+tasks.getByName("allTests").dependsOn(iosTest)
