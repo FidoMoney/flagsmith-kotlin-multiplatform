@@ -2,7 +2,9 @@ package com.flagsmith
 
 import com.flagsmith.entities.Flag
 import com.flagsmith.entities.IdentityFlagsAndTraits
+import com.flagsmith.entities.IdentityIdentifierFlagsAndTraits
 import com.flagsmith.entities.Trait
+import com.flagsmith.entities.TraitWithIdentifier
 import com.flagsmith.entities.TraitWithIdentity
 
 internal interface FlagsmithSDK {
@@ -12,8 +14,9 @@ internal interface FlagsmithSDK {
     suspend fun hasFeatureFlag(forFeatureId: String, identity: String?): Boolean
     suspend fun getValueForFeature(searchFeatureId: String): Any?
     suspend fun getValueForFeature(searchFeatureId: String, identity: String?): Any?
-    suspend fun getTrait(id: String, identity: String): Trait?
-    suspend fun getTraits(identity: String): List<Trait>
-    suspend fun setTrait(trait: Trait, identity: String): TraitWithIdentity
+    suspend fun getTrait(id: String, identity: String): TraitWithIdentifier?
+    suspend fun getTraits(identity: String): List<TraitWithIdentifier>
+    suspend fun setTrait(trait: TraitWithIdentifier, identity: String): TraitWithIdentity
+    suspend fun setIdentityWithTraits(identity: String, traits: List<Trait>): IdentityIdentifierFlagsAndTraits
     suspend fun getIdentity(identity: String): IdentityFlagsAndTraits
 }

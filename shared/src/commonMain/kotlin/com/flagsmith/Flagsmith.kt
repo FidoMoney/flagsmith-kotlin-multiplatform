@@ -6,7 +6,9 @@ import com.flagsmith.client.HttpClientBuilder
 import com.flagsmith.client.HttpClientFactoryImpl
 import com.flagsmith.entities.Flag
 import com.flagsmith.entities.IdentityFlagsAndTraits
+import com.flagsmith.entities.IdentityIdentifierFlagsAndTraits
 import com.flagsmith.entities.Trait
+import com.flagsmith.entities.TraitWithIdentifier
 import com.flagsmith.entities.TraitWithIdentity
 import io.ktor.client.plugins.logging.LogLevel
 
@@ -18,19 +20,19 @@ class Flagsmith(
     private val apiVersion: String = DEFAULT_API_VERSION,
     private val enableAnalytics: Boolean = DEFAULT_ENABLE_ANALYTICS,
     private val analyticsFlushPeriod: Int = DEFAULT_ANALYTICS_FLUSH_PERIOD_SECONDS,
-    private val logLevel: LogLevel = DEFAULT_LOG_LEVEL,
+    private val logLevel: LogLevel = DEFAULT_LOG_LEVEL
 ) : FlagsmithSDK {
     private val api: FlagsmithApi by lazy {
         FlagsmithApiImpl(
             httpClient = HttpClientBuilder(
-                clientFactory = HttpClientFactoryImpl(),
+                clientFactory = HttpClientFactoryImpl()
             ).build(
                 isHttps = isHttps,
                 baseUrl = baseUrl,
                 apiPath = apiPath,
                 apiVersion = apiVersion,
                 environmentKey = environmentKey,
-                logLevel = logLevel,
+                logLevel = logLevel
             )
         )
     }
@@ -63,16 +65,23 @@ class Flagsmith(
         }?.featureStateValue
     }
 
-    override suspend fun getTrait(id: String, identity: String): Trait? {
+    override suspend fun getTrait(id: String, identity: String): TraitWithIdentifier? {
         return api.getIdentityFlagsAndTraits(identity).traits.find { it.key == id }
     }
 
-    override suspend fun getTraits(identity: String): List<Trait> {
+    override suspend fun getTraits(identity: String): List<TraitWithIdentifier> {
         return api.getIdentityFlagsAndTraits(identity).traits
     }
 
-    override suspend fun setTrait(trait: Trait, identity: String): TraitWithIdentity {
+    override suspend fun setTrait(trait: TraitWithIdentifier, identity: String): TraitWithIdentity {
         return api.setTrait(trait, identity)
+    }
+
+    override suspend fun setIdentityWithTraits(
+        identity: String,
+        traits: List<Trait>
+    ): IdentityIdentifierFlagsAndTraits {
+        return api.setIdentityWithTraits(identity, traits)
     }
 
     override suspend fun getIdentity(identity: String): IdentityFlagsAndTraits {
