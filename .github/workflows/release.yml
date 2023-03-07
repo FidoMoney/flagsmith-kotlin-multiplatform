@@ -15,6 +15,11 @@ jobs:
         with:
           java-version: 11
 
+      - name: Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: 7.2.2
+
       - name: Publish
         run: gradle check publish --no-configure-on-demand --no-daemon
         env:
