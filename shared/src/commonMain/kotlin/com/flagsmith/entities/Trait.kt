@@ -6,5 +6,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Trait(
     @SerialName(value = "trait_key") val key: String,
-    @SerialName(value = "trait_value") val value: String
+    @SerialName(value = "trait_value") val value: String,
+    @SerialName(value = "transient") val transient: Boolean = false,
 )
