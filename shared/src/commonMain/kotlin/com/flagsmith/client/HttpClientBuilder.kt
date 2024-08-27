@@ -26,7 +26,12 @@ internal class HttpClientBuilder(
         logLevel: LogLevel,
     ): HttpClient = clientFactory.build { config ->
         config.install(ContentNegotiation) {
-            json(Json)
+            json(
+                Json {
+                    ignoreUnknownKeys = true
+                    coerceInputValues = true
+                }
+            )
         }
 
         config.install(Logging) {

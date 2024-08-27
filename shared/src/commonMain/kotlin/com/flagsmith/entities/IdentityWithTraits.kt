@@ -5,5 +5,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class IdentityWithTraits(
     val identifier: String,
-    val traits: List<Trait>
+    val traits: List<Trait>,
+    val transient: Boolean = false,
 )
