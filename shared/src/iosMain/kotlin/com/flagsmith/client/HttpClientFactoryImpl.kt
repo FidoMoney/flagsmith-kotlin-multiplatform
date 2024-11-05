@@ -5,7 +5,7 @@ import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.darwin.Darwin
 
 actual class HttpClientFactoryImpl actual constructor() : HttpClientFactory {
-    override fun build(config: (HttpClientConfig<*>) -> Unit): HttpClient {
+    actual override fun build(config: (HttpClientConfig<*>) -> Unit): HttpClient {
         return HttpClient(Darwin) { config(this) }
     }
 }

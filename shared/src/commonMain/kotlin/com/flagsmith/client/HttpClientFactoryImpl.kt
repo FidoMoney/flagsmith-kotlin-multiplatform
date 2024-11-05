@@ -1,3 +1,10 @@
 package com.flagsmith.client
 
-expect class HttpClientFactoryImpl() : HttpClientFactory
+import io.ktor.client.HttpClient
+import io.ktor.client.HttpClientConfig
+
+expect class HttpClientFactoryImpl() : HttpClientFactory {
+    override fun build(
+        config: (HttpClientConfig<*>) -> Unit,
+    ): HttpClient
+}

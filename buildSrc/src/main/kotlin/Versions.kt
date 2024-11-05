@@ -1,7 +1,7 @@
 import org.gradle.api.JavaVersion
 
 object Versions {
-    const val lib = "1.1.0.6"
+    const val lib = "1.1.0.7"
 
     const val kotlin = "2.0.20"
     const val ktor = "3.0.0"
