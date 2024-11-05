@@ -12,7 +12,7 @@ group = "com.flagsmith"
 version = Versions.lib
 
 kotlin {
-    android()
+    androidTarget()
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -81,7 +81,7 @@ kotlin {
         }
     }
 
-    android {
+    androidTarget {
         publishLibraryVariants("release", "debug")
     }
 }
@@ -94,6 +94,11 @@ android {
     defaultConfig {
         minSdk = Versions.Android.minSdk
         targetSdk = Versions.Android.targetSdk
+    }
+
+    compileOptions {
+        sourceCompatibility = Versions.jvmTarget
+        targetCompatibility = Versions.jvmTarget
     }
 }
 

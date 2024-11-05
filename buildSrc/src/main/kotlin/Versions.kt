@@ -1,5 +1,7 @@
+import org.gradle.api.JavaVersion
+
 object Versions {
-    const val lib = "1.1.0.2"
+    const val lib = "1.1.0.3"
 
     const val kotlin = "2.0.20"
     const val ktor = "3.0.0"
@@ -13,4 +15,7 @@ object Versions {
         const val compileSdk = 32
         const val targetSdk = 31
     }
+
+    val jvmTarget = JavaVersion.VERSION_1_8
+    const val kotlinJvmTarget = "1.8"
 }
