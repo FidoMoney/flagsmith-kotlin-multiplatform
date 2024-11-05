@@ -84,6 +84,17 @@ kotlin {
     androidTarget {
         publishLibraryVariants("release", "debug")
     }
+
+    targets.all {
+        compilations.all {
+            kotlinOptions {
+                freeCompilerArgs = listOf(
+                    "-Xexpect-actual-classes",
+                    "-Xconsistent-data-class-copy-visibility",
+                )
+            }
+        }
+    }
 }
 
 java {
