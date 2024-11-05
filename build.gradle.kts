@@ -11,5 +11,9 @@ tasks.register("clean", Delete::class) {
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions {
         jvmTarget = Versions.kotlinJvmTarget
+        freeCompilerArgs = listOf(
+            "-Xexpect-actual-classes",
+            "-Xconsistent-data-class-copy-visibility",
+        )
     }
 }
