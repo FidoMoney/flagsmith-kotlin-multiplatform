@@ -101,6 +101,11 @@ android {
         minSdk = Versions.Android.minSdk
         targetSdk = Versions.Android.targetSdk
     }
+
+    compileOptions {
+        sourceCompatibility = Versions.jvmTarget
+        targetCompatibility = Versions.jvmTarget
+    }
 }
 
 publishing {
