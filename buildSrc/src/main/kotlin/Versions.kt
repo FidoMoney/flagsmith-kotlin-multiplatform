@@ -1,11 +1,11 @@
 object Versions {
-    const val lib = "1.0.4.0"
+    const val lib = "1.0.4.1"
 
-    const val kotlin = "1.7.21"
-    const val ktor = "2.1.3"
+    const val kotlin = "2.0.20"
+    const val ktor = "3.0.0"
     const val serialization = "1.4.1"
     const val coroutines = "1.6.4"
-    const val gradlePlugin = "7.2.2"
+    const val gradlePlugin = "8.3.2"
     const val jUnit = "4.13.2"
 
     object Android {
