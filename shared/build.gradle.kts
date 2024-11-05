@@ -51,7 +51,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-okhttp:${Versions.ktor}")
             }
         }
-        val androidTest by getting {
+        val androidUnitTest by getting {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(kotlin("test-junit"))
