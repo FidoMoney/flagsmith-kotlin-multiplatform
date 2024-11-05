@@ -12,7 +12,7 @@ group = "com.flagsmith"
 version = Versions.lib
 
 kotlin {
-    android()
+    androidTarget()
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -81,8 +81,14 @@ kotlin {
         }
     }
 
-    android {
+    androidTarget {
         publishLibraryVariants("release", "debug")
+    }
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
 
